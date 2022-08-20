@@ -2,11 +2,8 @@ import { Button, TextField, IconButton } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { Stack } from "@mui/system";
-import { useState } from "react";
 
-const Quantity = () => {
-  const [count, setCount] = useState(null);
-
+const Quantity = ({ qty, changeQty }) => {
   return (
     <Stack
       direction="row"
@@ -15,25 +12,34 @@ const Quantity = () => {
       spacing={1}
       sx={{ width: "100%" }}
     >
-      {count === null ? (
-        <Button onClick={() => setCount(1)}>Add to cart</Button>
+      {qty === undefined ? (
+        <Button
+          onClick={() => changeQty(1)}
+          variant="contained"
+          color="primary"
+        >
+          Add to cart
+        </Button>
       ) : (
         <>
           <IconButton
             aria-label="add"
             size="small"
-            disabled={count === 0}
-            onClick={() => setCount((i) => i - 1)}
+            disabled={qty === 0}
+            onClick={() => changeQty(-1)}
+            color="primary"
           >
             <RemoveCircleOutlineIcon fontSize="inherit" />
           </IconButton>
           <TextField
-            value={count}
+            value={qty}
             size="small"
             min={0}
             onChange={(ev) => {
-              setCount(Number(ev.target.value));
+              const val = Number(ev.target.value);
+              changeQty(val < 0 ? 0 : val - qty);
             }}
+            sx={{ width: "5em" }}
             type="number"
             inputProps={{ inputMode: "numeric" }}
           />
@@ -41,9 +47,9 @@ const Quantity = () => {
             aria-label="add"
             size="small"
             onClick={() => {
-              console.log("teast");
-              setCount((i) => i + 1);
+              changeQty(1);
             }}
+            color="primary"
           >
             <AddCircleOutlineIcon fontSize="inherit" />
           </IconButton>
