@@ -13,11 +13,11 @@ import ItemCard from "./components/ItemCard";
 import items from "./data/items";
 import paymentGatewayImg1 from "./imgs/PaymentGateway1.png";
 import paymentGatewayImg2 from "./imgs/PaymentGateway2.png";
+import PaymentGateway from "./components/PaymentGateway";
 
 function App() {
   const [quantaties, setQuantaties] = useState({});
   const [totalPrice, setTotalPrice] = useState(0);
-  const [paymentScreen2, setPaymentScreen2] = useState(false);
   const totalQty = useMemo(
     () => Object.values(quantaties).reduce((p, c) => p + c, 0),
     [quantaties]
@@ -62,7 +62,6 @@ function App() {
             open={open}
             onClose={() => {
               setOpen(false);
-              setPaymentScreen2(false);
             }}
           >
             <Paper
@@ -76,21 +75,7 @@ function App() {
                 transform: "translate(-50%, -50%)",
               }}
             >
-              {paymentScreen2 ? (
-                <img src={paymentGatewayImg2} />
-              ) : (
-                <>
-                  <img src={paymentGatewayImg1} usemap="#paymentGatway" />
-                  <map name="paymentGatway">
-                    <area
-                      shape="rect"
-                      coords="40,130,619,174"
-                      onClick={() => setPaymentScreen2(true)}
-                      href="#"
-                    />
-                  </map>
-                </>
-              )}
+              <PaymentGateway />
             </Paper>
           </Modal>
         )}
