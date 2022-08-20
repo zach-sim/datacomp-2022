@@ -3,8 +3,8 @@ import {
   Card,
   CardActions,
   CardContent,
-  CardHeader,
   CardMedia,
+  Typography,
 } from "@mui/material";
 import Quantity from "./Quantity";
 
@@ -14,20 +14,19 @@ const ItemCard = ({
   imgSrc,
 }) => (
   <Card sx={{ maxWidth: 345 }}>
-    <CardHeader
-      title={name}
-      avatar={
-        <Avatar
-          sx={{ width: 100 }}
-          variant="square"
-          imgProps={{ sx: { objectFit: "contain" } }}
-          src={brandImgSrc}
-          title={brandName}
-        />
-      }
-    />
     <CardMedia component="img" title={name} image={imgSrc} />
-    <CardContent></CardContent>
+    <CardContent>
+      <Typography gutterBottom variant="h6" component="div">
+        {name}
+      </Typography>
+      <Avatar
+        sx={{ width: 100 }}
+        variant="square"
+        imgProps={{ sx: { objectFit: "contain" } }}
+        src={brandImgSrc}
+        title={brandName}
+      />
+    </CardContent>
     <CardActions>
       <Quantity />
     </CardActions>
