@@ -34,7 +34,7 @@ const PaymentGateway = ({ amount }) => {
               setState((orig) => ({ ...orig, number: evt.target.value }))
             }
             size="small"
-            maxLength="10"
+            maxLength="16"
             sx={{width: 200, m: 1 }}
           />
             <TextField
