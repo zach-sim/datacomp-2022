@@ -23,10 +23,11 @@ const PaymentGateway = ({ amount }) => {
           number={state.number}
         >
         </Cards>
-        <div>
+      <form>
           <TextField
             required
             id="outlined-required"
+            name="number"
             label="Credit Number"
             value={state.number}
             variant="outlined"
@@ -34,12 +35,14 @@ const PaymentGateway = ({ amount }) => {
               setState((orig) => ({ ...orig, number: evt.target.value }))
             }
             size="small"
-            maxLength="10"
+            inputProps={{maxlength: 16}}
+            maxLength="16"
             sx={{width: 200, m: 1 }}
           />
             <TextField
             required
             id="outlined-required"
+            name="name"
             label="Name"
             value={state.name}
             variant="outlined"
@@ -51,6 +54,7 @@ const PaymentGateway = ({ amount }) => {
           />
             <TextField
             required
+            name="expiry"
             id="outlined-required"
             label="Valid Thru"
             value={state.expiry}
@@ -64,16 +68,18 @@ const PaymentGateway = ({ amount }) => {
             <TextField
             required
             id="outlined-required"
+            name="cvc"
             label="CVC"
             value={state.cvc}
             variant="outlined"
             onChange={(evt) =>
               setState((orig) => ({ ...orig, cvc: evt.target.value }))
             }
+            onFocus={(evt) => setState((orig)=> ({ ...orig, focus: evt.target.name}))}
             size="small"
             sx={{ width: 75, m: 1}}
           />
-        </div>
+      </form>
       </Stack>
       <Button variant="contained" sx={{ float: "right", marginRight: 3 }}>
         Submit
