@@ -37,7 +37,7 @@ function App() {
   );
   return (
     <Provider>
-      <Container sx={{ m: 2 }}>
+      <Container sx={{ mt: 2 }}>
         {totalPrice > 0 && (
           <Alert
             color="secondary"
@@ -61,7 +61,6 @@ function App() {
             onClose={() => {
               setOpen(false);
             }}
-          
           >
             <Paper
               component={Box}
@@ -78,14 +77,13 @@ function App() {
             </Paper>
           </Modal>
         )}
-        <Grid container spacing={2} mt={2}>
+        <Grid container spacing={2} mt={2} justifyContent="space-evenly">
           {items.map((item) => (
-            <Grid item key={item.id} sx={{ mx: 'auto'}}>
+            <Grid item key={item.id} sx={{ mx: "auto" }}>
               <ItemCard
                 {...item}
                 qty={quantaties[item.id]}
                 {...{ modifyQty }}
-                
               />
             </Grid>
           ))}
