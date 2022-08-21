@@ -11,8 +11,6 @@ import {
 import Provider from "./components/Provider";
 import ItemCard from "./components/ItemCard";
 import items from "./data/items";
-import paymentGatewayImg1 from "./imgs/PaymentGateway1.png";
-import paymentGatewayImg2 from "./imgs/PaymentGateway2.png";
 import PaymentGateway from "./components/PaymentGateway";
 
 function App() {
@@ -39,7 +37,7 @@ function App() {
   );
   return (
     <Provider>
-      <Container sx={{ marginTop: "2em" }}>
+      <Container sx={{ m: 2 }}>
         {totalPrice > 0 && (
           <Alert
             color="secondary"
@@ -63,6 +61,7 @@ function App() {
             onClose={() => {
               setOpen(false);
             }}
+          
           >
             <Paper
               component={Box}
@@ -81,11 +80,12 @@ function App() {
         )}
         <Grid container spacing={2} mt={2}>
           {items.map((item) => (
-            <Grid item key={item.id}>
+            <Grid item key={item.id} sx={{ mx: 'auto'}}>
               <ItemCard
                 {...item}
                 qty={quantaties[item.id]}
                 {...{ modifyQty }}
+                
               />
             </Grid>
           ))}
