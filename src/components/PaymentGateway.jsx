@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Cards from "react-credit-cards";
 import { TextField, Stack, Button } from "@mui/material";
-import 'react-credit-cards/es/styles-compiled.css'
+import "react-credit-cards/es/styles-compiled.css";
 
 const PaymentGateway = ({ amount }) => {
   const [state, setState] = useState({
@@ -14,15 +14,14 @@ const PaymentGateway = ({ amount }) => {
 
   return (
     <>
-      <Stack direction="row" spacing={3} mb={2} sx={{m: 2}}>
+      <Stack direction="row" spacing={3} mb={2} sx={{ m: 2 }}>
         <Cards
           cvc={state.cvc}
           expiry={state.expiry}
           focused={state.focus}
           name={state.name}
           number={state.number}
-        >
-        </Cards>
+        ></Cards>
         <div>
           <TextField
             required
@@ -35,9 +34,9 @@ const PaymentGateway = ({ amount }) => {
             }
             size="small"
             maxLength="16"
-            sx={{width: 200, m: 1 }}
+            sx={{ width: 200, m: 1 }}
           />
-            <TextField
+          <TextField
             required
             id="outlined-required"
             label="Name"
@@ -47,9 +46,9 @@ const PaymentGateway = ({ amount }) => {
               setState((orig) => ({ ...orig, name: evt.target.value }))
             }
             size="small"
-            sx={{display: 'block', width: 200, m: 1}}
+            sx={{ display: "block", width: 200, m: 1 }}
           />
-            <TextField
+          <TextField
             required
             id="outlined-required"
             label="Valid Thru"
@@ -59,9 +58,9 @@ const PaymentGateway = ({ amount }) => {
               setState((orig) => ({ ...orig, expiry: evt.target.value }))
             }
             size="small"
-            sx={{ width: 110, m: 1}}
-            />
-            <TextField
+            sx={{ width: 110, m: 1 }}
+          />
+          <TextField
             required
             id="outlined-required"
             label="CVC"
@@ -71,11 +70,17 @@ const PaymentGateway = ({ amount }) => {
               setState((orig) => ({ ...orig, cvc: evt.target.value }))
             }
             size="small"
-            sx={{ width: 75, m: 1}}
+            sx={{ width: 75, m: 1 }}
           />
         </div>
       </Stack>
-      <Button variant="contained" sx={{ float: "right", marginRight: 3 }}>
+      <Button
+        variant="contained"
+        sx={{ float: "right", marginRight: 3 }}
+        onClick={() => {
+          window.parent.postMessage("paid", "*");
+        }}
+      >
         Submit
       </Button>
     </>
